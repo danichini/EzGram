@@ -2,7 +2,7 @@
 import { createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import Add from './Add';
-import Home from './Home';
+import StackHome from './StackHome';
 import Search from './Search';
 import Follow from './Follow';
 import Profile from './Profile';
@@ -10,7 +10,7 @@ import Profile from './Profile';
 
 const RutasAutenticadas = createMaterialBottomTabNavigator({
   Home: {
-    screen: Home,
+    screen: StackHome,
   },
   Search: {
     screen: Search,
