@@ -1,5 +1,3 @@
-import React from 'react';
-import { Text, View, Button } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Home from './Home';
 import Autor from './Profile';
@@ -18,7 +16,14 @@ const StackHome = createStackNavigator({
   },
   Comentarios: {
     screen: Comentarios,
+    navigationOptions: {
+      tabBarVisible: false,
+    },
   },
+
+},
+{
+  headerMode: 'none',
 });
 
 export default createAppContainer(StackHome);
