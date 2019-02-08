@@ -6,6 +6,10 @@ import {
 
 // create a component
 class Comentarios extends Component {
+  static navigationOptions = {
+    tabBarVisible: false,
+  };
+
   render() {
     const { navigation } = this.props;
     return (
