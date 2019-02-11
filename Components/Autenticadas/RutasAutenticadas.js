@@ -4,8 +4,8 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import Add from './Add';
 import StackHome from './StackHome';
 import StackSearch from './StackSearch';
-import Follow from './Follow';
 import Profile from './Profile';
+import StackFollow from './StackFollow';
 
 
 const RutasAutenticadas = createMaterialBottomTabNavigator({
@@ -19,7 +19,7 @@ const RutasAutenticadas = createMaterialBottomTabNavigator({
     screen: Add,
   },
   Follow: {
-    screen: Follow,
+    screen: StackFollow,
   },
   Profile: {
     screen: Profile,
