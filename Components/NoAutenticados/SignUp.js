@@ -1,10 +1,10 @@
 // import liraries
 import React, { Component } from 'react';
 import {
-  View, Text, StyleSheet, Button,
+  View, Text, StyleSheet, Button, TextInput,
 } from 'react-native';
 import { connect } from 'react-redux';
-import Profile from '../Autenticadas/Profile';
+import SignUpForm from './Formas/SignUpForm';
 // define your styles
 const styles = StyleSheet.create({
   container: {
@@ -23,6 +23,10 @@ class SignUp extends Component {
     return (
       <View style={styles.container}>
         <Text>SignUp</Text>
+        <SignUpForm />
+        <TextInput
+          placeholder="Correo@correo.com"
+        />
         <Button
           title="Aumentar"
           onPress={aumentar}
