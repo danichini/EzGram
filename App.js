@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-// import RutasNoAutenticadas from './Components/NoAutenticados/RutasNoAutenticadas';
-import RutasAutenticadas from './Components/Autenticadas/RutasAutenticadas';
+import { Provider } from 'react-redux';
+import RutasNoAutenticadas from './Components/NoAutenticados/RutasNoAutenticadas';
+// import RutasAutenticadas from './Components/Autenticadas/RutasAutenticadas';
+import Store from './Store/Store';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,8 +25,10 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         {/* <RutasNoAutenticadas /> */}
-        <Text>{nombre}</Text>
-        <RutasAutenticadas />
+        <Provider store={Store}>
+          <Text>{nombre}</Text>
+          <RutasNoAutenticadas />
+        </Provider>
       </View>
     );
   }
