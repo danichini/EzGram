@@ -3,15 +3,17 @@ import React, { Component } from 'react';
 import {
   View, Text, StyleSheet, Button,
 } from 'react-native';
+import SignInForm from './Formas/SignInForm';
 
 // define your styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#2c3e50',
+    paddingHorizontal: 15,
   },
+
 });
 // create a component
 class SignIn extends Component {
@@ -20,6 +22,7 @@ class SignIn extends Component {
     return (
       <View style={styles.container}>
         <Text>SignIn</Text>
+        <SignInForm />
         <Button
           title="SignUp"
           onPress={() => { navigation.navigate('SignUp'); }}

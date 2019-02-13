@@ -47,12 +47,6 @@ const validate = (values) => {
     errors.nombre = 'debe ser menor a 10 caracteres';
   }
 
-  if (!values.correo) {
-    errors.correo = 'requerido';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.correo)) {
-    errors.correo = 'correo invalido';
-  }
-
   if (!values.password) {
     errors.password = 'requerido';
   } else if (values.password.length < 5) {
@@ -61,28 +55,20 @@ const validate = (values) => {
     errors.password = 'debe ser menor a 15 caracateres';
   }
 
-  if (!values.confirmacion) {
-    errors.correo = 'requerido';
-  } else if (values.password !== values.confirmacion) {
-    errors.confirmacion = 'el password debe coincider';
-  }
-
   return errors;
 };
 
-const SignUpForm = (props) => {
+const SignInForm = (props) => {
   console.log(props);
 
   const { handleSubmit } = props;
   return (
     <View>
       <Field name="nombre" component={fieldNombre} ph="nombre" />
-      <Field name="correo" component={fieldNombre} ph="@correo.com" />
       <Field name="password" component={fieldNombre} ph="*****" />
-      <Field name="confirmacion" component={fieldNombre} ph="*****" />
       <Text>Redux Form</Text>
       <Button
-        title="Registrar"
+        title="SignIn"
         onPress={handleSubmit(values => console.log(values))}
       />
     </View>
@@ -90,6 +76,6 @@ const SignUpForm = (props) => {
 };
 
 export default reduxForm({
-  form: 'SignUpForm',
+  form: 'SignInForm',
   validate,
-})(SignUpForm);
+})(SignInForm);

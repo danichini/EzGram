@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#2c3e50',
+    paddingHorizontal: 15,
   },
 });
 
@@ -24,9 +24,6 @@ class SignUp extends Component {
       <View style={styles.container}>
         <Text>SignUp</Text>
         <SignUpForm />
-        <TextInput
-          placeholder="Correo@correo.com"
-        />
         <Button
           title="Aumentar"
           onPress={aumentar}
