@@ -3,6 +3,7 @@ import {
   View, Text, TextInput, Button, StyleSheet,
 } from 'react-native';
 import { Field, reduxForm } from 'redux-form';
+import autenticacion from '../../../Store/Servicios/Firebase';
 
 const styles = StyleSheet.create({
   textInput: {
@@ -69,7 +70,18 @@ const SignInForm = (props) => {
       <Text>Redux Form</Text>
       <Button
         title="SignIn"
-        onPress={handleSubmit(values => console.log(values))}
+        onPress={handleSubmit((values) => {
+          console.log(values);
+          // autenticacion.auth().createUserWithEmailAndPassword(email, password)
+          //   .then((success) => {
+          //     console.log(success);
+          //   }).catch((error) => {
+          //   // Handle Errors here.
+          //     const errorCode = error.code;
+          //     const errorMessage = error.message;
+          //     console.log(`${errorCode} ${errorMessage}`);
+          //   });
+        })}
       />
     </View>
   );

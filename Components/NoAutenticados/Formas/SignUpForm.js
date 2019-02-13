@@ -3,6 +3,7 @@ import {
   View, Text, TextInput, Button, StyleSheet,
 } from 'react-native';
 import { Field, reduxForm } from 'redux-form';
+import autenticacion from '../../../Store/Servicios/Firebase';
 
 const styles = StyleSheet.create({
   textInput: {
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
 
 const fieldNombre = (props) => {
   const { input, ph, meta } = props;
-  console.log(props);
+  console.log('inputs');
   return (
     <View style={styles.textInput}>
       <TextInput
@@ -62,7 +63,7 @@ const validate = (values) => {
   }
 
   if (!values.confirmacion) {
-    errors.correo = 'requerido';
+    errors.confirmacion = 'requerido';
   } else if (values.password !== values.confirmacion) {
     errors.confirmacion = 'el password debe coincider';
   }
@@ -71,7 +72,7 @@ const validate = (values) => {
 };
 
 const SignUpForm = (props) => {
-  console.log(props);
+  console.log('SignUpForm');
 
   const { handleSubmit } = props;
   return (
@@ -83,7 +84,19 @@ const SignUpForm = (props) => {
       <Text>Redux Form</Text>
       <Button
         title="Registrar"
-        onPress={handleSubmit(values => console.log(values))}
+        onPress={handleSubmit((values) => {
+          console.log(values);
+          autenticacion.createUserWithEmailAndPassword(values.correo, values.password)
+            .then((success) => {
+              console.log(success);
+            })
+            .catch((error) => {
+            // Handle Errors here.
+              const errorCode = error.code;
+              const errorMessage = error.message;
+            // ...
+            });
+        })}
       />
     </View>
   );
