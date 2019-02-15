@@ -17,12 +17,18 @@ const styles = StyleSheet.create({
 
 // create a component
 class SignUp extends Component {
+  registroDeUsuario = (values) => {
+    const { registro } = this.props;
+    console.log(values);
+    registro(values);
+  }
+
   render() {
     const { navigation, aumentar } = this.props;
     return (
       <View style={styles.container}>
         <Text>SignUp</Text>
-        <SignUpForm />
+        <SignUpForm registro={this.registroDeUsuario} />
         <Button
           title="Aumentar"
           onPress={aumentar}
@@ -41,8 +47,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  aumentar: () => {
-    dispatch({ type: 'AUMENTAR_REDUCER_PRUEBA' });
+  registro: (values) => {
+    dispatch({ type: 'REGISTRO', datos: values });
   },
 });
 

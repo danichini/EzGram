@@ -71,10 +71,8 @@ const validate = (values) => {
   return errors;
 };
 
-const SignUpForm = (props) => {
+const SignUpForm = ({ handleSubmit, registro }) => {
   console.log('SignUpForm');
-
-  const { handleSubmit } = props;
   return (
     <View>
       <Field name="nombre" component={fieldNombre} ph="nombre" />
@@ -84,19 +82,21 @@ const SignUpForm = (props) => {
       <Text>Redux Form</Text>
       <Button
         title="Registrar"
-        onPress={handleSubmit((values) => {
-          console.log(values);
-          autenticacion.createUserWithEmailAndPassword(values.correo, values.password)
-            .then((success) => {
-              console.log(success);
-            })
-            .catch((error) => {
-            // Handle Errors here.
-              const errorCode = error.code;
-              const errorMessage = error.message;
-            // ...
-            });
-        })}
+        onPress={handleSubmit(registro,
+        //   (values) => {
+        //   console.log(values);
+        //   autenticacion.createUserWithEmailAndPassword(values.correo, values.password)
+        //     .then((success) => {
+        //       console.log(success);
+        //     })
+        //     .catch((error) => {
+        //     // Handle Errors here.
+        //       const errorCode = error.code;
+        //       const errorMessage = error.message;
+        //     // ...
+        //     });
+        // }
+        )}
       />
     </View>
   );
