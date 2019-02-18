@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import SignInForm from './Formas/SignInForm';
-
+import { actionLogin } from '../../Store/ACCIONES';
 // define your styles
 const styles = StyleSheet.create({
   container: {
@@ -43,8 +43,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  login: (values) => {
-    dispatch({ type: 'LOGIN', datos: values });
+  login: (datos) => {
+    dispatch(actionLogin(datos));
   },
 });
 

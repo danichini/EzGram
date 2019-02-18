@@ -75,7 +75,6 @@ const SignUpForm = ({ handleSubmit, registro }) => (
     <Field name="correo" component={fieldNombre} ph="@correo.com" />
     <Field name="password" component={fieldNombre} ph="*****" />
     <Field name="confirmacion" component={fieldNombre} ph="*****" />
-    <Text>Redux Form</Text>
     <Button
       title="Registrar"
       onPress={handleSubmit(registro,

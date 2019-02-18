@@ -29,12 +29,10 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { nombre } = this.state;
     return (
       <View style={styles.container}>
         {/* <RutasNoAutenticadas /> */}
         <Provider store={Store}>
-          <Text>{nombre}</Text>
           <RutasNoAutenticadas />
         </Provider>
       </View>

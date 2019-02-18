@@ -64,7 +64,6 @@ const SignInForm = (props) => {
     <View>
       <Field name="email" component={fieldNombre} ph="nombre" />
       <Field name="password" component={fieldNombre} ph="*****" />
-      <Text>Redux Form</Text>
       <Button
         title="SignIn"
         onPress={handleSubmit(login)}
