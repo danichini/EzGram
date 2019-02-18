@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
 
 const fieldNombre = (props) => {
   const { input, ph, meta } = props;
-  console.log(props);
   return (
     <View style={styles.textInput}>
       <TextInput
@@ -44,7 +43,7 @@ const validate = (values) => {
     errors.nombre = 'requerido';
   } else if (values.nombre.length < 5) {
     errors.nombre = 'deben ser al menos 5 caracteres';
-  } else if (values.nombre.length > 10) {
+  } else if (values.nombre.length > 20) {
     errors.nombre = 'debe ser menor a 10 caracteres';
   }
 
@@ -60,28 +59,15 @@ const validate = (values) => {
 };
 
 const SignInForm = (props) => {
-  console.log(props);
-
-  const { handleSubmit } = props;
+  const { handleSubmit, login } = props;
   return (
     <View>
-      <Field name="nombre" component={fieldNombre} ph="nombre" />
+      <Field name="email" component={fieldNombre} ph="nombre" />
       <Field name="password" component={fieldNombre} ph="*****" />
       <Text>Redux Form</Text>
       <Button
         title="SignIn"
-        onPress={handleSubmit((values) => {
-          console.log(values);
-          // autenticacion.auth().createUserWithEmailAndPassword(email, password)
-          //   .then((success) => {
-          //     console.log(success);
-          //   }).catch((error) => {
-          //   // Handle Errors here.
-          //     const errorCode = error.code;
-          //     const errorMessage = error.message;
-          //     console.log(`${errorCode} ${errorMessage}`);
-          //   });
-        })}
+        onPress={handleSubmit(login)}
       />
     </View>
   );

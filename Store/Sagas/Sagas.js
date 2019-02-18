@@ -12,7 +12,7 @@ const registroEnBaseDeDatos = ({ uid, email, nombre }) => baseDeDatos
     email,
   });
 
-function* generadoraRegistro(values) {
+function* sagaRegistro(values) {
   try {
     console.log('values de registro', values);
     const registro = yield call(registroEnFirebase, values.datos);
@@ -26,7 +26,22 @@ function* generadoraRegistro(values) {
   }
 }
 
+const loginEnFirebase = ({ email, password }) => autenticacion
+  .signInWithEmailAndPassword(email, password)
+  .then(success => success);
+
+function* sagaLogin(values) {
+  try {
+    console.log(values);
+    const resultado = yield call(loginEnFirebase, values.datos);
+    console.log(resultado);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export default function* funcionPrimaria() {
-  yield takeEvery('REGISTRO', generadoraRegistro);
+  yield takeEvery('REGISTRO', sagaRegistro);
+  yield takeEvery('LOGIN', sagaLogin);
   console.log('funcion generadora');
 }
