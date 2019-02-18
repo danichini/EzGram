@@ -7,8 +7,8 @@ const registroEnFirebase = values => autenticacion
   .then(success => success);
 
 const registroEnBaseDeDatos = ({ uid, email, nombre }) => baseDeDatos
-  .ref(`users/${uid}`).set({
-    username: nombre,
+  .ref(`usuarios/${uid}`).set({
+    nombre,
     email,
   });
 

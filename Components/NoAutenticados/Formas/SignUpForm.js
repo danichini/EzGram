@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
 
 const fieldNombre = (props) => {
   const { input, ph, meta } = props;
-  console.log('inputs');
   return (
     <View style={styles.textInput}>
       <TextInput
@@ -70,18 +69,16 @@ const validate = (values) => {
   return errors;
 };
 
-const SignUpForm = ({ handleSubmit, registro }) => {
-  console.log('SignUpForm');
-  return (
-    <View>
-      <Field name="nombre" component={fieldNombre} ph="nombre" />
-      <Field name="correo" component={fieldNombre} ph="@correo.com" />
-      <Field name="password" component={fieldNombre} ph="*****" />
-      <Field name="confirmacion" component={fieldNombre} ph="*****" />
-      <Text>Redux Form</Text>
-      <Button
-        title="Registrar"
-        onPress={handleSubmit(registro,
+const SignUpForm = ({ handleSubmit, registro }) => (
+  <View>
+    <Field name="nombre" component={fieldNombre} ph="nombre" />
+    <Field name="correo" component={fieldNombre} ph="@correo.com" />
+    <Field name="password" component={fieldNombre} ph="*****" />
+    <Field name="confirmacion" component={fieldNombre} ph="*****" />
+    <Text>Redux Form</Text>
+    <Button
+      title="Registrar"
+      onPress={handleSubmit(registro,
         //   (values) => {
         //   console.log(values);
         //   autenticacion.createUserWithEmailAndPassword(values.correo, values.password)
@@ -95,11 +92,10 @@ const SignUpForm = ({ handleSubmit, registro }) => {
         //     // ...
         //     });
         // }
-        )}
-      />
-    </View>
-  );
-};
+      )}
+    />
+  </View>
+);
 
 export default reduxForm({
   form: 'SignUpForm',
