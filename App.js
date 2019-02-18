@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import RutasNoAutenticadas from './Components/NoAutenticados/RutasNoAutenticadas';
 // import RutasAutenticadas from './Components/Autenticadas/RutasAutenticadas';
 import Store from './Store/Store';
+import Seleccion from './Seleccion';
 
 const styles = StyleSheet.create({
   container: {
@@ -33,7 +34,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
         {/* <RutasNoAutenticadas /> */}
         <Provider store={Store}>
-          <RutasNoAutenticadas />
+          <Seleccion />
         </Provider>
       </View>
     );
