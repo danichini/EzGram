@@ -1,7 +1,7 @@
 // import liraries
 import React, { Component } from 'react';
 import {
-  View, Text, StyleSheet, Button, TextInput,
+  View, Text, StyleSheet, Button,
 } from 'react-native';
 import { connect } from 'react-redux';
 import SignUpForm from './Formas/SignUpForm';
@@ -24,14 +24,14 @@ class SignUp extends Component {
   }
 
   render() {
-    const { navigation, aumentar } = this.props;
+    const { navigation, registro } = this.props;
     return (
       <View style={styles.container}>
         <Text>SignUp</Text>
         <SignUpForm registro={this.registroDeUsuario} />
         <Button
           title="Aumentar"
-          onPress={aumentar}
+          onPress={registro}
         />
         <Button
           title="SignIn"

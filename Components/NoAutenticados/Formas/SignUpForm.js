@@ -3,7 +3,6 @@ import {
   View, Text, TextInput, Button, StyleSheet,
 } from 'react-native';
 import { Field, reduxForm } from 'redux-form';
-import autenticacion from '../../../Store/Servicios/Firebase';
 
 const styles = StyleSheet.create({
   textInput: {
