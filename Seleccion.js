@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { autenticacion } from './Store/Servicios/Firebase';
 import RutasNoAutenticadas from './Components/NoAutenticados/RutasNoAutenticadas';
 import { actionEstablecerSesion, actionCerrarSesion } from './Store/ACCIONES';
+import RutasAutenticadas from './Components/Autenticadas/RutasAutenticadas';
 
 // define your styles
 const styles = StyleSheet.create({
@@ -20,23 +21,26 @@ class Seleccion extends Component {
   }
 
   render() {
+    const { usuario } = this.props;
+    console.log('user: ', usuario);
+
     return (
       <View style={styles.container}>
-        <RutasNoAutenticadas />
+        {usuario ? <RutasAutenticadas /> : <RutasNoAutenticadas />}
       </View>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => ({
-
+  usuario: state.reducerSesion,
 });
 
 const mapDispatchToProps = dispatch => ({
   autenticacion: () => {
     autenticacion.onAuthStateChanged((usuario) => {
       if (usuario) {
-        console.log(usuario);
+        console.log('Usuario:', usuario);
         dispatch(actionEstablecerSesion(usuario));
       } else {
         console.log('no existe sesion');
