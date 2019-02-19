@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import SignUpForm from './Formas/SignUpForm';
+import SeleccionarImagen from '../SeleccionarImagen';
 import { actionRegistro } from '../../Store/ACCIONES';
 // define your styles
 const styles = StyleSheet.create({
@@ -29,11 +30,8 @@ class SignUp extends Component {
     return (
       <View style={styles.container}>
         <Text>SignUp</Text>
+        <SeleccionarImagen />
         <SignUpForm registro={this.registroDeUsuario} />
-        <Button
-          title="Aumentar"
-          onPress={registro}
-        />
         <Button
           title="SignIn"
           onPress={() => { navigation.goBack(); }}

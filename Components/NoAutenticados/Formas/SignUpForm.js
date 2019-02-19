@@ -15,6 +15,9 @@ const styles = StyleSheet.create({
   errors: {
     color: 'crimson',
   },
+  container: {
+    flex: 2,
+  },
 });
 
 const fieldNombre = (props) => {
@@ -70,7 +73,7 @@ const validate = (values) => {
 };
 
 const SignUpForm = ({ handleSubmit, registro }) => (
-  <View>
+  <View style={styles.container}>
     <Field name="nombre" component={fieldNombre} ph="nombre" />
     <Field name="correo" component={fieldNombre} ph="@correo.com" />
     <Field name="password" component={fieldNombre} ph="*****" />
