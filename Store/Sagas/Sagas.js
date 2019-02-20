@@ -1,4 +1,5 @@
-import { takeEvery, call } from 'redux-saga/effects';
+import { takeEvery, call, select } from 'redux-saga/effects';
+import { url } from 'inspector';
 import { autenticacion, baseDeDatos } from '../Servicios/Firebase';
 import CONSTANTES from '../CONSTANTES';
 
@@ -12,15 +13,36 @@ const registroEnBaseDeDatos = ({ uid, email, nombre }) => baseDeDatos
     email,
   });
 
+const registroFotoCloudinary = ({ imagen }) => {
+  console.log(imagen);
+  const { uri, type } = imagen;
+  const splitName = uri.split('/');
+  const name = [...splitName].pop();
+  // const foto = {
+  //   uri,
+  //   type,
+  //   name
+  // }
+  // const formImagen = new FormData();
+  // formImagen.append('upload_preset',CONSTANTES.CLOUDINARY_PRESET)
+  // formImagen.append('file', foto)
+
+  // return fetch(CONSTANTES.CLOUDINARY_NAME, {
+  //   method:'POST',
+  //   body:
+  // });
+};
+
 function* sagaRegistro(values) {
   try {
-    console.log('values de registro', values);
-    const registro = yield call(registroEnFirebase, values.datos);
-    console.log('registro', registro);
-    // uid, email, nombre
-    const { user: { email, uid } } = registro;
-    const { datos: { nombre } } = values;
-    yield call(registroEnBaseDeDatos, { uid, email, nombre });
+    // // cargar foto
+    const imagen = yield select(state => state.reducerImagenSignUp);
+    const urlFoto = yield call(registroFotoCloudinary, imagen);
+    // const registro = yield call(registroEnFirebase, values.datos);
+    // // uid, email, nombre
+    // const { user: { email, uid } } = registro;
+    // const { datos: { nombre } } = values;
+    // yield call(registroEnBaseDeDatos, { uid, email, nombre });
   } catch (error) {
     console.log(error);
   }
