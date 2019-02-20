@@ -34,13 +34,36 @@ const fieldNombre = (props) => {
         onBlur={input.onBlur}
       />
       <View style={styles.linea} />
-      { meta.touched && <Text style={styles.errors}>{meta.error}</Text> }
+      { meta.touched
+          && meta.error
+          && <Text style={styles.errors}>{meta.error}</Text> }
     </View>
   );
 };
 
-const validate = (values) => {
+const fieldImagen = (props) => {
+  const { meta } = props;
+  return (
+    <View>
+      <View style={styles.textInput}>
+        { meta.touched
+          && meta.error
+          && <Text style={styles.errors}>{meta.error}</Text> }
+      </View>
+    </View>
+  );
+};
+const validate = (values, props) => {
+  console.log('validaciones');
+
+  const { imagen } = props;
+
   const errors = {};
+
+  if (!imagen) {
+    errors.imagen = 'imagen requerida';
+  }
+
   if (!values.nombre) {
     errors.nombre = 'requerido';
   } else if (values.nombre.length < 5) {
@@ -74,27 +97,14 @@ const validate = (values) => {
 
 const SignUpForm = ({ handleSubmit, registro }) => (
   <View style={styles.container}>
+    <Field name="imagen" component={fieldImagen} />
     <Field name="nombre" component={fieldNombre} ph="nombre" />
     <Field name="correo" component={fieldNombre} ph="@correo.com" />
     <Field name="password" component={fieldNombre} ph="*****" />
     <Field name="confirmacion" component={fieldNombre} ph="*****" />
     <Button
       title="Registrar"
-      onPress={handleSubmit(registro,
-        //   (values) => {
-        //   console.log(values);
-        //   autenticacion.createUserWithEmailAndPassword(values.correo, values.password)
-        //     .then((success) => {
-        //       console.log(success);
-        //     })
-        //     .catch((error) => {
-        //     // Handle Errors here.
-        //       const errorCode = error.code;
-        //       const errorMessage = error.message;
-        //     // ...
-        //     });
-        // }
-      )}
+      onPress={handleSubmit(registro)}
     />
   </View>
 );

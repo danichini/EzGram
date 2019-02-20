@@ -4,9 +4,9 @@ import {
   View, Text, StyleSheet, Button,
 } from 'react-native';
 import { connect } from 'react-redux';
+import { blur, change } from 'redux-form';
 import SignUpForm from './Formas/SignUpForm';
 import SeleccionarImagen from '../SeleccionarImagen';
-import CONSTANTES from '../../Store/CONSTANTES';
 import {
   actionRegistro,
   actionCargarImagenSignUp,
@@ -45,7 +45,10 @@ class SignUp extends Component {
           imagen={imagen.imagen}
           cargar={cargarImagen}
         />
-        <SignUpForm registro={this.registroDeUsuario} />
+        <SignUpForm
+          registro={this.registroDeUsuario}
+          imagen={imagen.imagen}
+        />
         <Button
           title="SignIn"
           onPress={() => { navigation.goBack(); }}
@@ -67,6 +70,7 @@ const mapDispatchToProps = dispatch => ({
   // al seleccionar la imagen se envia por medio de un dispatch al store
   cargarImagen: (imagen) => {
     dispatch(actionCargarImagenSignUp(imagen));
+    dispatch(blur('SignUpForm', 'imagen', Date.now()));
   },
   // al momento en el que el componente se este desmontando
   // imagen = null gracias al dispatch

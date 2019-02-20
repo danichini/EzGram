@@ -24,7 +24,7 @@ const reducerSesion = (state = null, action) => {
   }
 };
 
-const reducerImagenSignUp = (state = { image: null }, action) => {
+const reducerImagenSignUp = (state = { imagen: null }, action) => {
   switch (action.type) {
     case CONSTANTES.CARGAR_IMAGEN_SIGNUP:
       return { imagen: action.imagen };
