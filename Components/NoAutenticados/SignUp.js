@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import SignUpForm from './Formas/SignUpForm';
 import SeleccionarImagen from '../SeleccionarImagen';
 import { actionRegistro } from '../../Store/ACCIONES';
+import CONSTANTES from '../../Store/CONSTANTES';
 // define your styles
 const styles = StyleSheet.create({
   container: {
@@ -19,6 +20,11 @@ const styles = StyleSheet.create({
 
 // create a component
 class SignUp extends Component {
+  componentWillUnmount() {
+    const { limpiarImagen } = this.props;
+    limpiarImagen();
+  }
+
   registroDeUsuario = (values) => {
     const { registro } = this.props;
     console.log(values);
@@ -26,11 +32,14 @@ class SignUp extends Component {
   }
 
   render() {
-    const { navigation, registro } = this.props;
+    const { navigation, imagen, cargarImagen } = this.props;
     return (
       <View style={styles.container}>
         <Text>SignUp</Text>
-        <SeleccionarImagen />
+        <SeleccionarImagen
+          imagen={imagen.imagen}
+          cargar={cargarImagen}
+        />
         <SignUpForm registro={this.registroDeUsuario} />
         <Button
           title="SignIn"
@@ -42,12 +51,22 @@ class SignUp extends Component {
 }
 
 const mapStateToProps = state => ({
-  numero: state.reducerPrueba,
+  imagen: state.reducerImagenSignUp,
 });
 
 const mapDispatchToProps = dispatch => ({
+
   registro: (datos) => {
     dispatch(actionRegistro(datos));
+  },
+  // al seleccionar la imagen se envia por medio de un dispatch al store
+  cargarImagen: (imagen) => {
+    dispatch({ type: CONSTANTES.CARGAR_IMAGEN_SIGNUP, imagen });
+  },
+  // al momento en el que el componente se este desmontando
+  // imagen = null gracias al dispatch
+  limpiarImagen: () => {
+    dispatch({ type: CONSTANTES.LIMPIAR_IMAGEN_SIGNUP });
   },
 });
 
