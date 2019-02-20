@@ -6,8 +6,13 @@ import {
 import { connect } from 'react-redux';
 import SignUpForm from './Formas/SignUpForm';
 import SeleccionarImagen from '../SeleccionarImagen';
-import { actionRegistro } from '../../Store/ACCIONES';
 import CONSTANTES from '../../Store/CONSTANTES';
+import {
+  actionRegistro,
+  actionCargarImagenSignUp,
+  actionLimpiarImagenSignUp,
+} from '../../Store/ACCIONES';
+
 // define your styles
 const styles = StyleSheet.create({
   container: {
@@ -61,12 +66,12 @@ const mapDispatchToProps = dispatch => ({
   },
   // al seleccionar la imagen se envia por medio de un dispatch al store
   cargarImagen: (imagen) => {
-    dispatch({ type: CONSTANTES.CARGAR_IMAGEN_SIGNUP, imagen });
+    dispatch(actionCargarImagenSignUp(imagen));
   },
   // al momento en el que el componente se este desmontando
   // imagen = null gracias al dispatch
   limpiarImagen: () => {
-    dispatch({ type: CONSTANTES.LIMPIAR_IMAGEN_SIGNUP });
+    dispatch(actionLimpiarImagenSignUp());
   },
 });
 
