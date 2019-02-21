@@ -4,7 +4,7 @@ import {
   View, Text, StyleSheet, Button,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { blur, change } from 'redux-form';
+import { blur } from 'redux-form';
 import SignUpForm from './Formas/SignUpForm';
 import SeleccionarImagen from '../SeleccionarImagen';
 import {

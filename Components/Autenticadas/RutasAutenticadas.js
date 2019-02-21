@@ -1,11 +1,11 @@
 
 import { createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-import Add from './Add';
 import StackHome from './StackHome';
 import StackSearch from './StackSearch';
 import Profile from './Profile';
 import StackFollow from './StackFollow';
+import StackAdd from './StackAdd';
 
 
 const RutasAutenticadas = createMaterialBottomTabNavigator({
@@ -16,7 +16,7 @@ const RutasAutenticadas = createMaterialBottomTabNavigator({
     screen: StackSearch,
   },
   Add: {
-    screen: Add,
+    screen: StackAdd,
   },
   Follow: {
     screen: StackFollow,
@@ -27,7 +27,7 @@ const RutasAutenticadas = createMaterialBottomTabNavigator({
 }, {
   initialRouteName: 'Home',
   activeColor: '#f0edf6',
-  inactiveColor: '#000',
+  inactiveColor: '#fff',
   barStyle: { backgroundColor: '#000' },
 });
 
