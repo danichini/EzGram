@@ -6,7 +6,7 @@ import { ImagePicker } from 'expo';
 import picture from '../assets/profile.png';
 
 const SeleccionarImagen = (props) => {
-  const { imagen, cargar } = props;
+  const { imagen, cargar, radius } = props;
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
@@ -19,6 +19,8 @@ const SeleccionarImagen = (props) => {
     }
   };
 
+  const radious = { borderRadius: radius ? 0 : 100 };
+
   return (
     <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
       <TouchableOpacity
@@ -27,13 +29,13 @@ const SeleccionarImagen = (props) => {
         {
         imagen ? (
           <Image
-            style={{ width: 200, height: 200, borderRadius: 100 }}
+            style={{ width: 200, height: 200, ...radious }}
             source={{ uri: imagen.uri }}
           />
         )
           : (
             <Image
-              style={{ width: 200, height: 200, borderRadius: 100 }}
+              style={{ width: 200, height: 200, ...radious }}
               source={picture}
             />
           )
