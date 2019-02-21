@@ -1,5 +1,5 @@
 import { takeEvery, call, select } from 'redux-saga/effects';
-import { url } from 'inspector';
+import axios from 'axios';
 import { autenticacion, baseDeDatos } from '../Servicios/Firebase';
 import CONSTANTES from '../CONSTANTES';
 
@@ -7,30 +7,49 @@ const registroEnFirebase = values => autenticacion
   .createUserWithEmailAndPassword(values.correo, values.password)
   .then(success => success);
 
-const registroEnBaseDeDatos = ({ uid, email, nombre }) => baseDeDatos
-  .ref(`usuarios/${uid}`).set({
-    nombre,
-    email,
-  });
+const registroEnBaseDeDatos = ({
+  uid, email, nombre, profileImageUrl,
+}) => baseDeDatos.ref(`usuarios/${uid}`).set({
+  nombre,
+  email,
+  profileImageUrl,
+});
 
 const registroFotoCloudinary = ({ imagen }) => {
-  console.log(imagen);
-  const { uri, type } = imagen;
+  // console.log('imagen: ', imagen);
+  const {
+    uri, type, height, width,
+  } = imagen;
+  const splitType = uri.split('.');
+  const extension = [...splitType].pop();
   const splitName = uri.split('/');
   const name = [...splitName].pop();
-  // const foto = {
-  //   uri,
-  //   type,
-  //   name
-  // }
-  // const formImagen = new FormData();
-  // formImagen.append('upload_preset',CONSTANTES.CLOUDINARY_PRESET)
-  // formImagen.append('file', foto)
+  const foto = {
+    uri,
+    type: `${type}/${extension}`,
+    name,
+    height,
+    width,
+  };
+
+  const formData = new FormData();
+  formData.append('file', foto);
+  formData.append('upload_preset', CONSTANTES.CLOUDINARY_PRESET);
+
+  return axios({
+    url: CONSTANTES.CLOUDINARY_NAME,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    data: formData,
+  }).then(res => res);
+
 
   // return fetch(CONSTANTES.CLOUDINARY_NAME, {
-  //   method:'POST',
-  //   body:
-  // });
+  //   method: 'POST',
+  //   body: formImagen,
+  // }).then(response => response);
 };
 
 function* sagaRegistro(values) {
@@ -38,11 +57,17 @@ function* sagaRegistro(values) {
     // // cargar foto
     const imagen = yield select(state => state.reducerImagenSignUp);
     const urlFoto = yield call(registroFotoCloudinary, imagen);
-    // const registro = yield call(registroEnFirebase, values.datos);
-    // // uid, email, nombre
-    // const { user: { email, uid } } = registro;
-    // const { datos: { nombre } } = values;
-    // yield call(registroEnBaseDeDatos, { uid, email, nombre });
+    const { data: { secure_url } } = urlFoto;
+    // profileImageUrl
+    const profileImageUrl = secure_url;
+    const registro = yield call(registroEnFirebase, values.datos);
+    // uid, email, nombre
+    const { user: { email, uid } } = registro;
+    const { datos: { nombre } } = values;
+
+    yield call(registroEnBaseDeDatos, {
+      uid, email, nombre, profileImageUrl,
+    });
   } catch (error) {
     console.log(error);
   }

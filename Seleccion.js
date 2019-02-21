@@ -22,8 +22,6 @@ class Seleccion extends Component {
 
   render() {
     const { usuario } = this.props;
-    console.log('user: ', usuario);
-
     return (
       <View style={styles.container}>
         {usuario ? <RutasAutenticadas /> : <RutasNoAutenticadas />}

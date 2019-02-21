@@ -57,7 +57,6 @@ const validate = (values, props) => {
   console.log('validaciones');
 
   const { imagen } = props;
-
   const errors = {};
 
   if (!imagen) {
