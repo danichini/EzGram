@@ -16,7 +16,6 @@ const registroEnBaseDeDatos = ({
 });
 
 const registroFotoCloudinary = ({ imagen }) => {
-  // console.log('imagen: ', imagen);
   const {
     uri, type, height, width,
   } = imagen;
@@ -79,7 +78,6 @@ const loginEnFirebase = ({ email, password }) => autenticacion
 
 function* sagaLogin(values) {
   try {
-    console.log(values);
     const resultado = yield call(loginEnFirebase, values.datos);
     console.log(resultado);
   } catch (error) {
@@ -90,5 +88,4 @@ function* sagaLogin(values) {
 export default function* funcionPrimaria() {
   yield takeEvery(CONSTANTES.REGISTRO, sagaRegistro);
   yield takeEvery(CONSTANTES.LOGIN, sagaLogin);
-  console.log('funcion generadora');
 }

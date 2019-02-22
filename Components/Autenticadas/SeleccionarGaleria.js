@@ -1,11 +1,12 @@
 // import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-paper';
+import { blur } from 'redux-form';
 import SeleccionarImagen from '../SeleccionarImagen';
 import { actionCargarPublicacion } from '../../Store/ACCIONES';
-
+import SeleccionarGaleriaForm from './SeleccionarGaleriaForm';
 // define your styles
 const styles = StyleSheet.create({
   container: {
@@ -37,6 +38,14 @@ class SeleccionarGaleria extends Component {
             radius
           />
         </View>
+        <View style={styles.texto}>
+          <SeleccionarGaleriaForm
+            imagen={imagen.imagen}
+            registro={(values) => {
+              console.log('seleccionar Galeria: ', values);
+            }}
+          />
+        </View>
         <View style={styles.boton}>
           <Button
             icon="add-a-photo"
@@ -60,6 +69,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   cargarImagen: (imagen) => {
     dispatch(actionCargarPublicacion(imagen));
+    dispatch(blur('SeleccionarGaleriaForm', 'imagen', Date.now()));
   },
 });
 

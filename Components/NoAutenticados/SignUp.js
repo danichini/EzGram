@@ -32,7 +32,6 @@ class SignUp extends Component {
 
   registroDeUsuario = (values) => {
     const { registro } = this.props;
-    console.log(values);
     registro(values);
   }
 
