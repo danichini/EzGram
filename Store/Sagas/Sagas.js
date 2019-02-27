@@ -1,19 +1,9 @@
+/* eslint-disable camelcase */
 import { takeEvery, call, select } from 'redux-saga/effects';
 import axios from 'axios';
 import { autenticacion, baseDeDatos } from '../Servicios/Firebase';
 import CONSTANTES from '../CONSTANTES';
 
-const registroEnFirebase = values => autenticacion
-  .createUserWithEmailAndPassword(values.correo, values.password)
-  .then(success => success);
-
-const registroEnBaseDeDatos = ({
-  uid, email, nombre, profileImageUrl,
-}) => baseDeDatos.ref(`usuarios/${uid}`).set({
-  nombre,
-  email,
-  profileImageUrl,
-});
 
 const registroFotoCloudinary = ({ imagen }) => {
   const {
@@ -50,6 +40,18 @@ const registroFotoCloudinary = ({ imagen }) => {
   //   body: formImagen,
   // }).then(response => response);
 };
+
+const registroEnBaseDeDatos = ({
+  uid, email, nombre, profileImageUrl,
+}) => baseDeDatos.ref(`usuarios/${uid}`).set({
+  nombre,
+  email,
+  profileImageUrl,
+});
+
+const registroEnFirebase = values => autenticacion
+  .createUserWithEmailAndPassword(values.correo, values.password)
+  .then(success => success);
 
 function* sagaRegistro(values) {
   try {

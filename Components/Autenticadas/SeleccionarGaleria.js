@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { Button } from 'react-native-paper';
+
 import { blur } from 'redux-form';
 import SeleccionarImagen from '../SeleccionarImagen';
 import { actionCargarPublicacion } from '../../Store/ACCIONES';
@@ -11,7 +11,6 @@ import SeleccionarGaleriaForm from './SeleccionarGaleriaForm';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     backgroundColor: '#2c3e50',
   },
   imagen: {
@@ -19,9 +18,6 @@ const styles = StyleSheet.create({
   },
   texto: {
     flex: 2,
-  },
-  boton: {
-    flex: 1,
   },
 });
 
@@ -45,17 +41,6 @@ class SeleccionarGaleria extends Component {
               console.log('seleccionar Galeria: ', values);
             }}
           />
-        </View>
-        <View style={styles.boton}>
-          <Button
-            icon="add-a-photo"
-            mode="contained"
-            onPress={() => {
-              console.log('Publicado');
-            }}
-          >
-            Publicar
-          </Button>
         </View>
       </View>
     );
