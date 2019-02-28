@@ -3,6 +3,7 @@ import {
   StyleSheet, Text, View, YellowBox,
 } from 'react-native';
 import { Provider } from 'react-redux';
+import ignoreWarnings from 'react-native-ignore-warnings';
 import RutasNoAutenticadas from './Components/NoAutenticados/RutasNoAutenticadas';
 // import RutasAutenticadas from './Components/Autenticadas/RutasAutenticadas';
 import Store from './Store/Store';
@@ -20,6 +21,16 @@ YellowBox.ignoreWarnings([
   'Setting a timer for a long period of time, i.e. multiple minutes, is a performance and correctness issue on Android as it keeps the timer module awake, and timers can only be called when the app is in the foreground. See https://github.com/facebook/react-native/issues/12981 for more info.',
   'Remote debugger is in a background tab which may cause apps to perform slowly',
 ]);
+
+ignoreWarnings([
+  'console.error:',
+]);
+
+ignoreWarnings('error', [
+  'console.error:',
+]);
+
+ignoreWarnings('log', 'console.error:');
 
 export default class App extends React.Component {
   constructor() {

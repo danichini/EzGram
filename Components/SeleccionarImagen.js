@@ -12,7 +12,6 @@ const SeleccionarImagen = (props) => {
       allowsEditing: true,
       aspect: [4, 3],
     });
-    console.log('SeleccionarImagen Result: ', result);
 
     if (!result.cancelled) {
       cargar(result);

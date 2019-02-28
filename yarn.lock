@@ -3622,6 +3622,11 @@ ignore-walk@^3.0.1:
   dependencies:
     minimatch "^3.0.4"
 
+ignore-warnings@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/ignore-warnings/-/ignore-warnings-0.1.0.tgz#0ce90ed2f745aef3254529daa0c4175dc01d076d"
+  integrity sha1-DOkO0vdFrvMlRSnaoMQXXcAdB20=
+
 ignore@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
@@ -5501,6 +5506,13 @@ react-native-gesture-handler@~1.0.14:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.2"
     prop-types "^15.5.10"
+
+react-native-ignore-warnings@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-ignore-warnings/-/react-native-ignore-warnings-0.1.1.tgz#3b6fb09d0e8f7917606fe8e18c6b1e28fafa044e"
+  integrity sha1-O2+wnQ6PeRdgb+jhjGseKPr6BE4=
+  dependencies:
+    ignore-warnings "0.1.0"
 
 react-native-maps@expo/react-native-maps#v0.22.1-exp.0:
   version "0.22.1"

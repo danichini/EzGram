@@ -32,7 +32,13 @@ const registroFotoCloudinary = ({ imagen }) => {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
     data: formData,
-  }).then(res => res);
+  }).then((res) => {
+    console.log(res);
+    return res;
+  })
+    .catch((error) => {
+      console.log('error axios');
+    });
 
 
   // return fetch(CONSTANTES.CLOUDINARY_NAME, {
@@ -70,7 +76,7 @@ function* sagaRegistro(values) {
       uid, email, nombre, profileImageUrl,
     });
   } catch (error) {
-    console.log(error);
+    console.log('error sagaRegistro');
   }
 }
 
@@ -83,11 +89,24 @@ function* sagaLogin(values) {
     const resultado = yield call(loginEnFirebase, values.datos);
     console.log(resultado);
   } catch (error) {
-    console.log(error);
+    console.log('error sagaLogin');
+  }
+}
+
+function* sagaSubirPublicacion(values) {
+  try {
+    const imagen = yield select(state => state.reducerImagenPublicacion);
+    console.log('imagen', imagen);
+    console.log('sagaSubir', values);
+    const resultadoImagen = yield call(registroFotoCloudinary, imagen);
+    console.log(resultadoImagen);
+  } catch (error) {
+    console.log('error sagaSubirPublicacion');
   }
 }
 
 export default function* funcionPrimaria() {
   yield takeEvery(CONSTANTES.REGISTRO, sagaRegistro);
   yield takeEvery(CONSTANTES.LOGIN, sagaLogin);
+  yield takeEvery(CONSTANTES.SUBIR_PUBLICACION, sagaSubirPublicacion);
 }

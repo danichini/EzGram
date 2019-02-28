@@ -2,10 +2,12 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-
 import { blur } from 'redux-form';
 import SeleccionarImagen from '../SeleccionarImagen';
-import { actionCargarPublicacion } from '../../Store/ACCIONES';
+import {
+  actionCargarPublicacion,
+  actionSubirPublicacion,
+} from '../../Store/ACCIONES';
 import SeleccionarGaleriaForm from './SeleccionarGaleriaForm';
 // define your styles
 const styles = StyleSheet.create({
@@ -24,7 +26,7 @@ const styles = StyleSheet.create({
 // create a component
 class SeleccionarGaleria extends Component {
   render() {
-    const { cargarImagen, imagen } = this.props;
+    const { cargarImagen, imagen, subirPublicacion } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.imagen}>
@@ -38,7 +40,7 @@ class SeleccionarGaleria extends Component {
           <SeleccionarGaleriaForm
             imagen={imagen.imagen}
             registro={(values) => {
-              console.log('seleccionar Galeria: ', values);
+              subirPublicacion(values);
             }}
           />
         </View>
@@ -55,6 +57,9 @@ const mapDispatchToProps = dispatch => ({
   cargarImagen: (imagen) => {
     dispatch(actionCargarPublicacion(imagen));
     dispatch(blur('SeleccionarGaleriaForm', 'imagen', Date.now()));
+  },
+  subirPublicacion: (values) => {
+    dispatch(actionSubirPublicacion(values));
   },
 });
 
